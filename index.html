@@ -64,6 +64,7 @@
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
+            width: 100%;
         }
         
         .search-input:focus {
@@ -190,6 +191,7 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
+        /* 移动端优化 */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
@@ -201,6 +203,8 @@
             
             .search-input {
                 min-width: auto;
+                width: 100%;
+                max-width: 100%;
             }
             
             .blacklist-container {
@@ -219,6 +223,15 @@
             
             header h1 {
                 font-size: 1.8rem;
+            }
+            
+            .search-container {
+                padding: 15px;
+            }
+            
+            .search-input {
+                padding: 10px 12px;
+                font-size: 16px; /* 防止iOS Safari缩放 */
             }
             
             .user-card {
@@ -269,6 +282,7 @@
         // 加载黑名单数据
         async function loadBlacklistData() {
             try {
+                // 使用相对路径
                 const response = await fetch('blacklist.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -278,7 +292,7 @@
                 updateResultsInfo(blacklistData.length);
             } catch (error) {
                 console.error('加载黑名单数据失败:', error);
-                blacklistContainer.innerHTML = '<div class="no-results"><h3>❌ 加载失败</h3><p>无法加载黑名单数据，请检查 /blacklist.json 文件是否存在且格式正确</p></div>';
+                blacklistContainer.innerHTML = '<div class="no-results"><h3>❌ 加载失败</h3><p>无法加载黑名单数据，请检查 blacklist.json 文件是否存在且格式正确</p></div>';
             }
         }
 
