@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云服务器联盟黑名单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            color: white;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .search-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .results-info {
+            margin-top: 15px;
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .blacklist-container {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .user-card h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .user-card h3::before {
+            content: '⚠️';
+            font-size: 1.2rem;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #475569;
+            min-width: 80px;
+        }
+        
+        .info-value {
+            color: #1e293b;
+            word-break: break-all;
+            flex: 1;
+            text-align: right;
+        }
+        
+        .reason-item {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .reason-item:last-child {
+            border-bottom: none;
+        }
+        
+        .reason-label {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+        
+        .reason-value {
+            color: #dc2626;
+            background: #fee2e2;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .no-results h3 {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+        
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                min-width: auto;
+            }
+            
+            .blacklist-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .user-card {
+                padding: 15px;
+            }
+            
+            .info-label {
+                min-width: 60px;
+                font-size: 14px;
+            }
+            
+            .info-value {
+                font-size: 14px;
+            }
+            
+            .reason-value {
+                font-size: 13px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>云服务器联盟黑名单</h1>
+            <p>多家云服务器商共享的用户黑名单系统</p>
+        </header>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="搜索QQ、邮箱、手机号、昵称或黑名单原因...">
+            </div>
+            <div class="results-info" id="resultsInfo"></div>
+        </div>
+        
+        <div class="blacklist-container" id="blacklistContainer">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+
+    <script>
+        let blacklistData = [];
+        const searchInput = document.getElementById('searchInput');
+        const blacklistContainer = document.getElementById('blacklistContainer');
+        const resultsInfo = document.getElementById('resultsInfo');
+
+        // 加载黑名单数据
+        async function loadBlacklistData() {
+            try {
+                const response = await fetch('/blacklist.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                blacklistData = await response.json();
+                displayBlacklist(blacklistData);
+                updateResultsInfo(blacklistData.length);
+            } catch (error) {
+                console.error('加载黑名单数据失败:', error);
+                blacklistContainer.innerHTML = '<div class="no-results"><h3>❌ 加载失败</h3><p>无法加载黑名单数据，请检查 /blacklist.json 文件是否存在且格式正确</p></div>';
+            }
+        }
+
+        // 显示黑名单数据
+        function displayBlacklist(data) {
+            if (data.length === 0) {
+                blacklistContainer.innerHTML = '<div class="no-results"><h3>🔍 未找到结果</h3><p>没有匹配的黑名单用户</p></div>';
+                return;
+            }
+
+            blacklistContainer.innerHTML = data.map(user => `
+                <div class="user-card">
+                    <h3>${user.nickname || '未知用户'}</h3>
+                    <div class="user-info">
+                        ${user.qq ? `<div class="info-item"><span class="info-label">QQ</span><span class="info-value">${user.qq}</span></div>` : ''}
+                        ${user.email ? `<div class="info-item"><span class="info-label">邮箱</span><span class="info-value">${user.email}</span></div>` : ''}
+                        ${user.phone ? `<div class="info-item"><span class="info-label">手机</span><span class="info-value">${user.phone}</span></div>` : ''}
+                        ${user.reason ? `<div class="reason-item"><span class="reason-label">黑名单原因</span><span class="reason-value">${user.reason}</span></div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 更新结果信息
+        function updateResultsInfo(count) {
+            resultsInfo.textContent = `共找到 ${count} 个黑名单用户`;
+        }
+
+        // 搜索功能
+        function searchBlacklist(query) {
+            if (!query.trim()) {
+                displayBlacklist(blacklistData);
+                updateResultsInfo(blacklistData.length);
+                return;
+            }
+
+            const filteredData = blacklistData.filter(user => {
+                const searchFields = [
+                    user.qq || '',
+                    user.email || '',
+                    user.phone || '',
+                    user.nickname || '',
+                    user.reason || ''
+                ];
+                
+                return searchFields.some(field => 
+                    field.toLowerCase().includes(query.toLowerCase())
+                );
+            });
+
+            displayBlacklist(filteredData);
+            updateResultsInfo(filteredData.length);
+        }
+
+        // 事件监听
+        searchInput.addEventListener('input', (e) => {
+            searchBlacklist(e.target.value);
+        });
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadBlacklistData();
+        });
+    </script>
+</body>
+</html>

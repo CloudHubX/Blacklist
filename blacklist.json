@@ -1,0 +1,58 @@
+[
+  {
+    "qq": "123456789",
+    "email": "baduser1@example.com",
+    "phone": "13800138001",
+    "nickname": "恶意用户A",
+    "reason": "多次进行恶意攻击和端口扫描"
+  },
+  {
+    "qq": "987654321",
+    "email": "spamuser@example.com",
+    "phone": "13900139002",
+    "nickname": "垃圾邮件发送者",
+    "reason": "大量发送垃圾邮件和广告内容"
+  },
+  {
+    "qq": "111222333",
+    "email": "abuse@example.com",
+    "phone": "13700137003",
+    "nickname": "滥用资源用户",
+    "reason": "超量使用CPU和带宽资源，影响其他用户"
+  },
+  {
+    "qq": "444555666",
+    "email": "hackattempt@example.com",
+    "phone": "13600136004",
+    "nickname": "安全威胁用户",
+    "reason": "尝试暴力破解和漏洞利用攻击"
+  },
+  {
+    "qq": "777888999",
+    "email": "fraud@example.com",
+    "phone": "13500135005",
+    "nickname": "欺诈行为用户",
+    "reason": "使用虚假信息注册并进行诈骗活动"
+  },
+  {
+    "qq": "222333444",
+    "email": "ddosattacker@example.com",
+    "phone": "13400134006",
+    "nickname": "DDoS攻击者",
+    "reason": "发起分布式拒绝服务攻击"
+  },
+  {
+    "qq": "555666777",
+    "email": "miningbot@example.com",
+    "phone": "13300133007",
+    "nickname": "挖矿程序用户",
+    "reason": "未经授权运行加密货币挖矿程序"
+  },
+  {
+    "qq": "888999000",
+    "email": "phishing@example.com",
+    "phone": "13200132008",
+    "nickname": "钓鱼网站运营者",
+    "reason": "托管钓鱼网站窃取用户敏感信息"
+  }
+]
