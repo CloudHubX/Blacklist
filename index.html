@@ -841,7 +841,7 @@
         // 加载黑名单数据
         async function loadBlacklistData() {
             try {
-                const response = await fetch('/blacklist.json');
+                const response = await fetch('blacklist.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
