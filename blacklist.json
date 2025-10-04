@@ -3,7 +3,7 @@
     "qq": "123456789",
     "email": "ddos.attacker@example.com",
     "phone": "13800138001",
-    "nickname": "恶意DDoS攻击者",
+    "nickname": "恶意DDoS攻击者(示例)",
     "reason": "多次对服务器发起大规模DDoS攻击，导致服务中断超过48小时，影响其他用户正常使用",
     "submitter": "阿里云服务商",
     "addedTime": "2024-01-15"
@@ -12,9 +12,17 @@
     "qq": "987654321",
     "email": "spam.bot@example.com",
     "phone": "13900139002",
-    "nickname": "垃圾邮件机器人",
+    "nickname": "垃圾邮件机器人（示例）",
     "reason": "使用自动化脚本大量发送垃圾邮件和广告内容，日发送量超过10万封",
     "submitter": "腾讯云服务商",
     "addedTime": "2024-01-20"
+  },
+  {
+    "qq": "xigua666",
+    "email": "xigua1185@163.com",
+    "nickname": "xigua666",
+    "reason": "机器过期数月后恶意投诉，试图仅退款白嫖。购买一个月期服务后正常使用完毕，合约已于4个多月前自然终止，现恶意投诉称商家收款不发货涉嫌诈骗并申请退款，属于典型的恶意退款行为",
+    "submitter": "7inet",
+    "addedTime": "2025-10-04"
   }
 ]
