@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 100px;
             color: #333;
         }
         
@@ -52,19 +53,35 @@
         
         .search-box {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 12px;
+            align-items: stretch;
+            width: 100%;
+        }
+        
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-width: 0;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            color: #94a3b8;
+            font-size: 18px;
+            pointer-events: none;
         }
         
         .search-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 12px 16px;
+            width: 100%;
+            padding: 12px 45px 12px 45px;
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             font-size: 16px;
-            transition: border-color 0.3s ease;
-            width: 100%;
+            transition: all 0.3s ease;
+            background: white;
         }
         
         .search-input:focus {
@@ -73,10 +90,47 @@
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
+        .clear-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: none;
+        }
+        
+        .clear-btn:hover {
+            background: #f1f5f9;
+            color: #475569;
+        }
+        
+        .clear-btn.active {
+            display: block;
+        }
+        
         .results-info {
             margin-top: 15px;
             color: #64748b;
             font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .results-count {
+            font-weight: 600;
+        }
+        
+        .results-tip {
+            font-size: 13px;
+            color: #94a3b8;
         }
         
         .blacklist-container {
@@ -168,6 +222,35 @@
             line-height: 1.4;
         }
         
+        .meta-info {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #64748b;
+        }
+        
+        .meta-item::before {
+            font-size: 14px;
+        }
+        
+        .meta-item.submitter::before {
+            content: '👤';
+        }
+        
+        .meta-item.time::before {
+            content: '📅';
+        }
+        
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -191,51 +274,141 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
-        /* 移动端优化 */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .search-input {
-                min-width: auto;
-                width: 100%;
-                max-width: 100%;
-            }
-            
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 14px;
+            color: #475569;
+            z-index: 100;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        footer .github-link::before {
+            content: '⭐ ';
+        }
+        
+        /* 平板设备 */
+        @media (max-width: 1024px) {
             .blacklist-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
         }
         
-        @media (max-width: 480px) {
+        /* 小平板和大手机 */
+        @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 15px;
+                padding-bottom: 90px;
             }
             
             header {
                 padding: 15px;
+                margin-bottom: 20px;
             }
             
             header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
             }
             
             .search-container {
                 padding: 15px;
             }
             
+            .search-box {
+                gap: 10px;
+            }
+            
             .search-input {
-                padding: 10px 12px;
-                font-size: 16px; /* 防止iOS Safari缩放 */
+                font-size: 16px;
+                padding: 11px 40px 11px 40px;
+            }
+            
+            .blacklist-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .results-info {
+                font-size: 13px;
+            }
+            
+            .results-tip {
+                width: 100%;
+            }
+            
+            footer {
+                font-size: 13px;
+                padding: 12px 15px;
+            }
+        }
+        
+        /* 手机设备 */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-bottom: 85px;
+            }
+            
+            header {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+            }
+            
+            .search-container {
+                padding: 12px;
+            }
+            
+            .search-input {
+                font-size: 16px;
+                padding: 10px 38px 10px 38px;
+            }
+            
+            .search-icon {
+                left: 12px;
+                font-size: 16px;
+            }
+            
+            .clear-btn {
+                right: 8px;
+                font-size: 18px;
             }
             
             .user-card {
                 padding: 15px;
+            }
+            
+            .user-card h3 {
+                font-size: 1.1rem;
             }
             
             .info-label {
@@ -251,6 +424,54 @@
                 font-size: 13px;
                 padding: 6px;
             }
+            
+            .meta-item {
+                font-size: 12px;
+            }
+            
+            .results-info {
+                font-size: 12px;
+            }
+            
+            footer {
+                font-size: 11px;
+                padding: 10px;
+            }
+            
+            footer .github-link::before {
+                content: '⭐';
+            }
+        }
+        
+        /* 超小屏幕 */
+        @media (max-width: 360px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .search-input {
+                padding: 9px 35px 9px 35px;
+                font-size: 15px;
+            }
+            
+            .user-card h3 {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 触摸设备优化 */
+        @media (hover: none) and (pointer: coarse) {
+            .search-input {
+                padding: 13px 42px 13px 42px;
+            }
+            
+            .clear-btn {
+                padding: 8px 12px;
+            }
+            
+            .user-card:active {
+                transform: scale(0.98);
+            }
         }
     </style>
 </head>
@@ -263,9 +484,22 @@
         
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" class="search-input" placeholder="搜索QQ、邮箱、手机号、昵称或黑名单原因...">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="搜索QQ、邮箱、手机号、昵称、提交者或原因..."
+                        autocomplete="off"
+                    >
+                    <button class="clear-btn" id="clearBtn" title="清除搜索">✕</button>
+                </div>
             </div>
-            <div class="results-info" id="resultsInfo"></div>
+            <div class="results-info">
+                <span class="results-count" id="resultsInfo"></span>
+                <span class="results-tip">💡 支持模糊搜索</span>
+            </div>
         </div>
         
         <div class="blacklist-container" id="blacklistContainer">
@@ -273,16 +507,21 @@
         </div>
     </div>
 
+    <footer>
+        <a href="https://github.com/your-org/cloud-blacklist" target="_blank" class="github-link">GitHub 仓库</a>
+        <span> | 云服务器联盟黑名单系统 © 2024</span>
+    </footer>
+
     <script>
         let blacklistData = [];
         const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
         const blacklistContainer = document.getElementById('blacklistContainer');
         const resultsInfo = document.getElementById('resultsInfo');
 
         // 加载黑名单数据
         async function loadBlacklistData() {
             try {
-                // 使用相对路径
                 const response = await fetch('blacklist.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -312,6 +551,12 @@
                         ${user.phone ? `<div class="info-item"><span class="info-label">手机</span><span class="info-value">${user.phone}</span></div>` : ''}
                         ${user.reason ? `<div class="reason-item"><span class="reason-label">黑名单原因</span><span class="reason-value">${user.reason}</span></div>` : ''}
                     </div>
+                    ${user.submitter || user.addedTime ? `
+                    <div class="meta-info">
+                        ${user.submitter ? `<div class="meta-item submitter">提交者: ${user.submitter}</div>` : ''}
+                        ${user.addedTime ? `<div class="meta-item time">添加时间: ${user.addedTime}</div>` : ''}
+                    </div>
+                    ` : ''}
                 </div>
             `).join('');
         }
@@ -326,8 +571,11 @@
             if (!query.trim()) {
                 displayBlacklist(blacklistData);
                 updateResultsInfo(blacklistData.length);
+                clearBtn.classList.remove('active');
                 return;
             }
+
+            clearBtn.classList.add('active');
 
             const filteredData = blacklistData.filter(user => {
                 const searchFields = [
@@ -335,7 +583,8 @@
                     user.email || '',
                     user.phone || '',
                     user.nickname || '',
-                    user.reason || ''
+                    user.reason || '',
+                    user.submitter || ''
                 ];
                 
                 return searchFields.some(field => 
@@ -347,10 +596,21 @@
             updateResultsInfo(filteredData.length);
         }
 
+        // 清除搜索
+        function clearSearch() {
+            searchInput.value = '';
+            clearBtn.classList.remove('active');
+            displayBlacklist(blacklistData);
+            updateResultsInfo(blacklistData.length);
+            searchInput.focus();
+        }
+
         // 事件监听
         searchInput.addEventListener('input', (e) => {
             searchBlacklist(e.target.value);
         });
+
+        clearBtn.addEventListener('click', clearSearch);
 
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', () => {
