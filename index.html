@@ -43,6 +43,186 @@
             opacity: 0.9;
         }
         
+        .mode-tabs {
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: #f1f5f9;
+        }
+        
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .verify-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .verify-title {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .verify-box {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+            margin-bottom: 20px;
+        }
+        
+        .verify-input-wrapper {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .verify-icon {
+            position: absolute;
+            left: 16px;
+            color: #94a3b8;
+            font-size: 18px;
+        }
+        
+        .verify-input {
+            width: 100%;
+            padding: 14px 16px 14px 45px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .verify-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .verify-btn {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .verify-btn:active {
+            transform: translateY(0);
+        }
+        
+        .verify-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .verify-result.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .alert-danger {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+        
+        .alert-warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+        
+        .verify-result h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .verify-result p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .verify-result strong {
+            color: inherit;
+            font-weight: 600;
+        }
+        
+        .verify-hint {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
         .search-container {
             background: white;
             padding: 20px;
@@ -133,6 +313,21 @@
             color: #94a3b8;
         }
         
+        .privacy-notice {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #92400e;
+        }
+        
+        .privacy-notice strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
         .blacklist-container {
             display: grid;
             gap: 20px;
@@ -194,6 +389,7 @@
             word-break: break-all;
             flex: 1;
             text-align: right;
+            font-family: monospace;
         }
         
         .reason-item {
@@ -332,6 +528,31 @@
                 font-size: 1rem;
             }
             
+            .mode-tabs {
+                padding: 6px;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .verify-container {
+                padding: 20px;
+            }
+            
+            .verify-title {
+                font-size: 1.3rem;
+            }
+            
+            .verify-box {
+                flex-direction: column;
+            }
+            
+            .verify-btn {
+                width: 100%;
+            }
+            
             .search-container {
                 padding: 15px;
             }
@@ -382,6 +603,27 @@
             
             header p {
                 font-size: 0.9rem;
+            }
+            
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .verify-container {
+                padding: 15px;
+            }
+            
+            .verify-title {
+                font-size: 1.2rem;
+            }
+            
+            .verify-input {
+                padding: 12px 12px 12px 40px;
+            }
+            
+            .verify-icon {
+                left: 12px;
             }
             
             .search-container {
@@ -443,26 +685,15 @@
             }
         }
         
-        /* 超小屏幕 */
-        @media (max-width: 360px) {
-            header h1 {
-                font-size: 1.4rem;
-            }
-            
-            .search-input {
-                padding: 9px 35px 9px 35px;
-                font-size: 15px;
-            }
-            
-            .user-card h3 {
-                font-size: 1rem;
-            }
-        }
-        
         /* 触摸设备优化 */
         @media (hover: none) and (pointer: coarse) {
+            .verify-input,
             .search-input {
                 padding: 13px 42px 13px 42px;
+            }
+            
+            .verify-btn {
+                padding: 15px 32px;
             }
             
             .clear-btn {
@@ -482,28 +713,66 @@
             <p>多家云服务器商共享的用户黑名单系统</p>
         </header>
         
-        <div class="search-container">
-            <div class="search-box">
-                <div class="search-input-wrapper">
-                    <span class="search-icon">🔍</span>
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        class="search-input" 
-                        placeholder="搜索QQ、邮箱、手机号、昵称、提交者或原因..."
-                        autocomplete="off"
-                    >
-                    <button class="clear-btn" id="clearBtn" title="清除搜索">✕</button>
+        <!-- 模式切换标签 -->
+        <div class="mode-tabs">
+            <button class="tab-btn active" data-tab="verify">🔍 验证查询</button>
+            <button class="tab-btn" data-tab="list">📋 黑名单列表</button>
+        </div>
+        
+        <!-- 验证查询模式 -->
+        <div class="content-section active" id="verify-section">
+            <div class="verify-container">
+                <h2 class="verify-title">验证用户是否在黑名单</h2>
+                <div class="verify-box">
+                    <div class="verify-input-wrapper">
+                        <span class="verify-icon">🔍</span>
+                        <input 
+                            type="text" 
+                            id="verifyInput" 
+                            class="verify-input" 
+                            placeholder="输入完整的QQ号、邮箱或手机号..."
+                            autocomplete="off"
+                        >
+                    </div>
+                    <button class="verify-btn" id="verifyBtn">立即验证</button>
                 </div>
-            </div>
-            <div class="results-info">
-                <span class="results-count" id="resultsInfo"></span>
-                <span class="results-tip">💡 支持模糊搜索</span>
+                <div class="verify-hint">
+                    💡 输入完整信息后点击验证，系统将告知该用户是否在黑名单中
+                </div>
+                <div class="verify-result" id="verifyResult"></div>
             </div>
         </div>
         
-        <div class="blacklist-container" id="blacklistContainer">
-            <div class="loading">加载中...</div>
+        <!-- 黑名单列表模式 -->
+        <div class="content-section" id="list-section">
+            <div class="privacy-notice">
+                <strong>🔒 隐私保护说明</strong>
+                为保护用户隐私，列表中的个人信息已进行脱敏处理。如需验证特定用户，请使用"验证查询"功能。
+            </div>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="搜索昵称、提交者或黑名单原因..."
+                            autocomplete="off"
+                        >
+                        <button class="clear-btn" id="clearBtn" title="清除搜索">✕</button>
+                    </div>
+                </div>
+                <div class="results-info">
+                    <span class="results-count" id="resultsInfo"></span>
+                    <span class="results-tip">💡 支持模糊搜索</span>
+                </div>
+            </div>
+            
+            <div class="blacklist-container" id="blacklistContainer">
+                <div class="loading">加载中...</div>
+            </div>
         </div>
     </div>
 
@@ -514,15 +783,65 @@
 
     <script>
         let blacklistData = [];
+        
+        // DOM 元素
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const verifySect = document.getElementById('verify-section');
+        const listSect = document.getElementById('list-section');
+        const verifyInput = document.getElementById('verifyInput');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const verifyResult = document.getElementById('verifyResult');
         const searchInput = document.getElementById('searchInput');
         const clearBtn = document.getElementById('clearBtn');
         const blacklistContainer = document.getElementById('blacklistContainer');
         const resultsInfo = document.getElementById('resultsInfo');
 
+        // 标签页切换
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const tab = btn.dataset.tab;
+                if (tab === 'verify') {
+                    verifySect.classList.add('active');
+                    listSect.classList.remove('active');
+                } else {
+                    verifySect.classList.remove('active');
+                    listSect.classList.add('active');
+                }
+            });
+        });
+
+        // 数据脱敏函数
+        function maskSensitiveData(data, type) {
+            if (!data) return '';
+            
+            switch(type) {
+                case 'qq':
+                    // QQ: 123****789
+                    return data.length > 6 
+                        ? data.substring(0, 3) + '****' + data.substring(data.length - 3)
+                        : data.substring(0, 2) + '****';
+                case 'email':
+                    // 邮箱: ab***@example.com
+                    const [username, domain] = data.split('@');
+                    const maskedUsername = username.length > 4
+                        ? username.substring(0, 2) + '***' + username.substring(username.length - 1)
+                        : username.substring(0, 1) + '***';
+                    return maskedUsername + '@' + domain;
+                case 'phone':
+                    // 手机: 138****8001
+                    return data.substring(0, 3) + '****' + data.substring(7);
+                default:
+                    return data;
+            }
+        }
+
         // 加载黑名单数据
         async function loadBlacklistData() {
             try {
-                const response = await fetch('blacklist.json');
+                const response = await fetch('/blacklist.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -531,11 +850,11 @@
                 updateResultsInfo(blacklistData.length);
             } catch (error) {
                 console.error('加载黑名单数据失败:', error);
-                blacklistContainer.innerHTML = '<div class="no-results"><h3>❌ 加载失败</h3><p>无法加载黑名单数据，请检查 blacklist.json 文件是否存在且格式正确</p></div>';
+                blacklistContainer.innerHTML = '<div class="no-results"><h3>❌ 加载失败</h3><p>无法加载黑名单数据，请检查 /blacklist.json 文件是否存在且格式正确</p></div>';
             }
         }
 
-        // 显示黑名单数据
+        // 显示黑名单数据（脱敏）
         function displayBlacklist(data) {
             if (data.length === 0) {
                 blacklistContainer.innerHTML = '<div class="no-results"><h3>🔍 未找到结果</h3><p>没有匹配的黑名单用户</p></div>';
@@ -546,9 +865,9 @@
                 <div class="user-card">
                     <h3>${user.nickname || '未知用户'}</h3>
                     <div class="user-info">
-                        ${user.qq ? `<div class="info-item"><span class="info-label">QQ</span><span class="info-value">${user.qq}</span></div>` : ''}
-                        ${user.email ? `<div class="info-item"><span class="info-label">邮箱</span><span class="info-value">${user.email}</span></div>` : ''}
-                        ${user.phone ? `<div class="info-item"><span class="info-label">手机</span><span class="info-value">${user.phone}</span></div>` : ''}
+                        ${user.qq ? `<div class="info-item"><span class="info-label">QQ</span><span class="info-value">${maskSensitiveData(user.qq, 'qq')}</span></div>` : ''}
+                        ${user.email ? `<div class="info-item"><span class="info-label">邮箱</span><span class="info-value">${maskSensitiveData(user.email, 'email')}</span></div>` : ''}
+                        ${user.phone ? `<div class="info-item"><span class="info-label">手机</span><span class="info-value">${maskSensitiveData(user.phone, 'phone')}</span></div>` : ''}
                         ${user.reason ? `<div class="reason-item"><span class="reason-label">黑名单原因</span><span class="reason-value">${user.reason}</span></div>` : ''}
                     </div>
                     ${user.submitter || user.addedTime ? `
@@ -566,7 +885,7 @@
             resultsInfo.textContent = `共找到 ${count} 个黑名单用户`;
         }
 
-        // 搜索功能
+        // 搜索功能（不搜索脱敏字段）
         function searchBlacklist(query) {
             if (!query.trim()) {
                 displayBlacklist(blacklistData);
@@ -579,9 +898,6 @@
 
             const filteredData = blacklistData.filter(user => {
                 const searchFields = [
-                    user.qq || '',
-                    user.email || '',
-                    user.phone || '',
                     user.nickname || '',
                     user.reason || '',
                     user.submitter || ''
@@ -605,12 +921,57 @@
             searchInput.focus();
         }
 
+        // 验证用户
+        function verifyUser() {
+            const input = verifyInput.value.trim();
+            
+            if (!input) {
+                verifyResult.className = 'verify-result alert-warning show';
+                verifyResult.innerHTML = `
+                    <h3>⚠️ 请输入信息</h3>
+                    <p>请输入完整的QQ号、邮箱或手机号进行验证</p>
+                `;
+                return;
+            }
+            
+            const found = blacklistData.find(user => 
+                user.qq === input || 
+                user.email === input || 
+                user.phone === input
+            );
+            
+            if (found) {
+                verifyResult.className = 'verify-result alert-danger show';
+                verifyResult.innerHTML = `
+                    <h3>⚠️ 该用户在黑名单中！</h3>
+                    <p><strong>昵称：</strong>${found.nickname || '未知'}</p>
+                    <p><strong>黑名单原因：</strong>${found.reason || '未提供'}</p>
+                    <p><strong>提交者：</strong>${found.submitter || '未知'}</p>
+                    <p><strong>添加时间：</strong>${found.addedTime || '未知'}</p>
+                `;
+            } else {
+                verifyResult.className = 'verify-result alert-success show';
+                verifyResult.innerHTML = `
+                    <h3>✅ 该用户不在黑名单中</h3>
+                    <p>未在联盟黑名单系统中找到该用户的记录</p>
+                `;
+            }
+        }
+
         // 事件监听
         searchInput.addEventListener('input', (e) => {
             searchBlacklist(e.target.value);
         });
 
         clearBtn.addEventListener('click', clearSearch);
+
+        verifyBtn.addEventListener('click', verifyUser);
+
+        verifyInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verifyUser();
+            }
+        });
 
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', () => {
